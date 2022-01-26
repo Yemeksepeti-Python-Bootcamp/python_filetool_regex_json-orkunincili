@@ -33,6 +33,9 @@ class Database:
                 conn.close()
     @classmethod
     def open_connection(self):
+        """
+            This method is created open a connection
+        """
         conn = None
         conn = sqlite3.connect(self.db_name)
 
@@ -41,19 +44,21 @@ class Database:
     @classmethod
     def generate_table_name(self):
             """
-                bugünün tarihine göre tablo adı oluşturdan sınıf metodu
+                This method is created generate table name
 
-                *join tek bir argüman kabul ettiği için tarih değerleri tuple
-                olarak ve stringe çevrilerek gönderildi
+                exp: data_2022125
             """
             current_day = date.today()
             merged_date = "".join((str(current_day.year),str(current_day.month),str(current_day.day)))
 
             return f"data_{merged_date}"
+
     @classmethod
     def create_table(self,table_name):
 
-
+        """
+            This method is created create table
+        """
         conn = self.open_connection()
         im = conn.cursor()
 

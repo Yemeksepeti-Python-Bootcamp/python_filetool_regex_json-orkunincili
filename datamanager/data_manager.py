@@ -106,7 +106,9 @@ class DataManager(RegexTool):
         return emails_username
 
     def required_data(self,data):
-
+            """
+                This method returns only requested data
+            """
             email = self.get_email(data)
             username = self.get_username(data)
             name = self.get_name(data)

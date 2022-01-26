@@ -1,16 +1,32 @@
 
 from os.path import dirname
 from sys import path
-from geopy.geocoders import Nominatim
+import sys
 from database.database import Database
 from datamanager.data_manager import DataManager
 from regex.regextool import RegexTool
 from model.models import User
-import os
+import os,collections
 from pathlib import Path
 path.insert( 0 , dirname( __file__ ) )
 
 def main():
+
+
+    opts = [opt for opt in sys.argv[1:] if opt.startswith("--")]
+    args = [arg for arg in sys.argv[1:] if not arg.startswith("-")]
+
+    if "--file" in opts:
+
+        pass
+    elif "--db" in opts:
+        pass
+
+
+    else:
+        pass
+        #raise SystemExit(f"Usage: {sys.argv[0]} (--file | --db ) <arguments>...")
+
     Database.create_connection()
     Database.create_table(Database.generate_table_name())
     datamanager = DataManager(Path(os.getcwd()) / 'dataregex.json')
@@ -20,7 +36,7 @@ def main():
 
         user = User(required_data)
         user.save()
-    
+
 
 
 
